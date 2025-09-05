@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Colors, Fonts & Text Styling</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.03) 10px,
+                rgba(255,255,255,0.03) 20px
+            );
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .instructor-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            display: inline-block;
+        }
+
+        /* Navigation */
+        .nav {
+            background: #2c3e50;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin: 0 5px;
+        }
+
+        .nav a:hover {
+            background: #3498db;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            text-align: center;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            margin: 40px 0 20px;
+            color: #34495e;
+        }
+
+        /* Color Properties Section */
+        .color-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .color-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .color-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .color-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .color-box {
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .color-box:hover {
+            transform: scale(1.05);
+        }
+
+        .hex-color { background-color: #3498db; color: white; }
+        .rgb-color { background-color: rgb(231, 76, 60); color: white; }
+        .hsl-color { background-color: hsl(120, 60%, 70%); color: white; }
+        .named-color { background-color: orange; color: white; }
+
+        /* Font Properties Section */
+        .font-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .font-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+
+        .font-family-demo { font-family: 'Playfair Display', serif; }
+        .font-size-demo { font-size: 24px; }
+        .font-weight-demo { font-weight: 700; }
+
+        /* Text Properties Section */
+        .text-demo {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .text-align-left { text-align: left; }
+        .text-align-center { text-align: center; }
+        .text-align-right { text-align: right; }
+        .text-decoration-underline { text-decoration: underline; }
+        .text-decoration-line-through { text-decoration: line-through; }
+        .text-decoration-overline { text-decoration: overline; }
+
+        /* Code blocks */
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Source Code Pro', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: 'CSS';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: #3498db;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px dashed #3498db;
+        }
+
+        .demo-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .demo-controls button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            background: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .demo-controls button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .demo-text {
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* Practice Section */
+        .practice-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .practice-card h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+            
+            .nav ul {
+                justify-content: center;
+            }
+            
+            .nav a {
+                padding: 8px 16px;
+                margin: 2px;
+                font-size: 14px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .loading-dots {
+            display: inline-block;
+        }
+
+        .loading-dots::after {
+            content: '';
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>CSS Colors, Fonts & Text Styling</h1>
+                <p class="subtitle">Week 2 • CSS Lecture 2 • Comprehensive Guide</p>
+                <div class="instructor-info">
+                    <strong>Instructor:</strong> Anas Yousaf<br>
+                    <strong>Institution:</strong> Dot and Cross Technology
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="container">
+            <ul>
+                <li><a href="#colors">Color Properties</a></li>
+                <li><a href="#fonts">Font Properties</a></li>
+                <li><a href="#text">Text Properties</a></li>
+                <li><a href="#google-fonts">Google Fonts</a></li>
+                <li><a href="#practice">Class Practice</a></li>
+                <li><a href="#homework">Home Task</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="colors" class="section">
+        <div class="container">
+            <h2>Color Properties</h2>
+            <div class="color-demo">
+                <div class="color-card">
+                    <h3>Text Color</h3>
+                    <p>The <code>color</code> property sets the color of text content.</p>
+                    <div class="code-block">
+.element {
+    color: #3498db;        /* Hex */
+    color: rgb(52, 152, 219); /* RGB */
+    color: hsl(204, 70%, 53%); /* HSL */
+    color: blue;           /* Named color */
+}</div>
+                    <div class="color-examples">
+                        <div class="color-box hex-color">#3498db</div>
+                        <div class="color-box rgb-color">RGB(231,76,60)</div>
+                        <div class="color-box hsl-color">HSL(120,60%,70%)</div>
+                        <div class="color-box named-color">orange</div>
+                    </div>
+                </div>
+
+                <div class="color-card">
+                    <h3>Background Color</h3>
+                    <p>The <code>background-color</code> property sets the background color of elements.</p>
+                    <div class="code-block">
+.element {
+    background-color: #f8f9fa;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-color: transparent;
+}</div>
+                    <div style="margin-top: 20px;">
+                        <div style="background-color: #e74c3c; color: white; padding: 20px; border-radius: 5px; margin: 10px 0;">Red Background</div>
+                        <div style="background-color: rgba(52, 152, 219, 0.3); padding: 20px; border-radius: 5px; margin: 10px 0;">Semi-transparent Blue</div>
+                        <div style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 5px; margin: 10px 0;">Gradient Background</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>🎨 Interactive Color Demo</h3>
+                <div class="demo-controls">
+                    <button onclick="changeColor('#e74c3c', 'white')">Red</button>
+                    <button onclick="changeColor('#3498db', 'white')">Blue</button>
+                    <button onclick="changeColor('#2ecc71', 'white')">Green</button>
+                    <button onclick="changeColor('#f39c12', 'white')">Orange</button>
+                    <button onclick="changeColor('#9b59b6', 'white')">Purple</button>
+                </div>
+                <div class="demo-text" id="colorDemo">
+                    Click the buttons above to change my background color!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fonts" class="section">
+        <div class="container">
+            <h2>Font Properties</h2>
+            <div class="font-demo">
+                <div class="font-card">
+                    <h3>Font Family</h3>
+                    <p>Sets the typeface for text content.</p>
+                    <div class="code-block">
+.element {
+    font-family: 'Arial', sans-serif;
+    font-family: 'Times New Roman', serif;
+    font-family: 'Courier New', monospace;
+}</div>
+                    <div style="margin-top: 20px;">
+                        <p style="font-family: Arial, sans-serif;">This is Arial (Sans-serif)</p>
+                        <p style="font-family: 'Times New Roman', serif;">This is Times New Roman (Serif)</p>
+                        <p style="font-family: 'Courier New', monospace;">This is Courier New (Monospace)</p>
+                        <p class="font-family-demo">This is Playfair Display (Google Font)</p>
+                    </div>
+                </div>
+
+                <div class="font-card">
+                    <h3>Font Size</h3>
+                    <p>Controls the size of text characters.</p>
+                    <div class="code-block">
+.element {
+    font-size: 16px;       /* Pixels */
+    font-size: 1.2em;      /* Relative to parent */
+    font-size: 1.5rem;     /* Relative to root */
+    font-size: large;      /* Keyword */
+}</div>
+                    <div style="margin-top: 20px;">
+                        <p style="font-size: 12px;">12px - Small text</p>
+                        <p style="font-size: 16px;">16px - Normal text</p>
+                        <p style="font-size: 24px;">24px - Large text</p>
+                        <p style="font-size: 32px;">32px - Extra large</p>
+                    </div>
+                </div>
+
+                <div class="font-card">
+                    <h3>Font Weight</h3>
+                    <p>Controls the thickness/boldness of characters.</p>
+                    <div class="code-block">
+.element {
+    font-weight: normal;   /* 400 */
+    font-weight: bold;     /* 700 */
+    font-weight: 300;      /* Light */
+    font-weight: 900;      /* Extra Bold */
+}</div>
+                    <div style="margin-top: 20px;">
+                        <p style="font-weight: 300;">300 - Light</p>
+                        <p style="font-weight: 400;">400 - Normal</p>
+                        <p style="font-weight: 600;">600 - Semi Bold</p>
+                        <p style="font-weight: 700;">700 - Bold</p>
+                        <p style="font-weight: 900;">900 - Extra Bold</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="text" class="section">
+        <div class="container">
+            <h2>Text Properties</h2>
+            
+            <div class="text-demo">
+                <h3>Text Alignment</h3>
+                <div class="code-block">
+.left { text-align: left; }
+.center { text-align: center; }
+.right { text-align: right; }
+.justify { text-align: justify; }</div>
+                <div style="margin-top: 20px;">
+                    <p class="text-align-left" style="background: #f8f9fa; padding: 15px; margin: 10px 0; border-left: 4px solid #3498db;">Left aligned text</p>
+                    <p class="text-align-center" style="background: #f8f9fa; padding: 15px; margin: 10px 0; border-left: 4px solid #e74c3c;">Center aligned text</p>
+                    <p class="text-align-right" style="background: #f8f9fa; padding: 15px; margin: 10px 0; border-left: 4px solid #2ecc71;">Right aligned text</p>
+                </div>
+            </div>
+
+            <div class="text-demo">
+                <h3>Text Decoration</h3>
+                <div class="code-block">
+.underline { text-decoration: underline; }
+.line-through { text-decoration: line-through; }
+.overline { text-decoration: overline; }
+.none { text-decoration: none; }</div>
+                <div style="margin-top: 20px;">
+                    <p class="text-decoration-underline" style="font-size: 18px; margin: 15px 0;">This text has an underline</p>
+                    <p class="text-decoration-line-through" style="font-size: 18px; margin: 15px 0;">This text is struck through</p>
+                    <p class="text-decoration-overline" style="font-size: 18px; margin: 15px 0;">This text has an overline</p>
+                    <p style="font-size: 18px; margin: 15px 0;"><a href="#" style="text-decoration: none; color: #3498db;">This link has no decoration</a></p>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>🔤 Interactive Text Demo</h3>
+                <div class="demo-controls">
+                    <button onclick="changeTextAlign('left')">Left</button>
+                    <button onclick="changeTextAlign('center')">Center</button>
+                    <button onclick="changeTextAlign('right')">Right</button>
+                    <button onclick="toggleDecoration('underline')">Underline</button>
+                    <button onclick="toggleDecoration('line-through')">Strike</button>
+                </div>
+                <div class="demo-text" id="textDemo">
+                    Use the buttons above to change my text alignment and decoration!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="google-fonts" class="section">
+        <div class="container">
+            <h2>Google Fonts Integration</h2>
+            
+            <div class="color-card" style="max-width: 800px; margin: 0 auto;">
+                <h3>How to Use Google Fonts</h3>
+                <p style="margin-bottom: 20px;">Google Fonts provides free, high-quality web fonts that you can easily integrate into your website.</p>
+                
+                <h4 style="color: #3498db; margin: 20px 0 10px;">Step 1: Choose Your Fonts</h4>
+                <p>Visit <a href="https://fonts.google.com" style="color: #3498db;">fonts.google.com</a> and select your desired fonts.</p>
+                
+                <h4 style="color: #3498db; margin: 20px 0 10px;">Step 2: Add to HTML</h4>
+                <div class="code-block">
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"&gt;</div>
+                
+                <h4 style="color: #3498db; margin: 20px 0 10px;">Step 3: Use in CSS</h4>
+                <div class="code-block">
+body {
+    font-family: 'Inter', sans-serif;
+}</div>
+
+                <div style="margin-top: 30px;">
+                    <h4 style="color: #2c3e50; margin-bottom: 15px;">Font Examples:</h4>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 18px; margin: 10px 0;">Inter - Modern and clean</p>
+                    <p style="font-family: 'Playfair Display', serif; font-size: 18px; margin: 10px 0;">Playfair Display - Elegant serif</p>
+                    <p style="font-family: 'Source Code Pro', monospace; font-size: 18px; margin: 10px 0;">Source Code Pro - Monospace</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="practice" class="section">
+        <div class="container">
+            <h2>Class Practice</h2>
+            <div class="practice-card">
+                <h3>🎯 Typography-Focused Webpage Challenge</h3>
+                <p style="font-size: 18px; margin-bottom: 20px;">Create a webpage that demonstrates different fonts and color schemes</p>
+                <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 10px; text-align: left;">
+                    <h4>Requirements:</h4>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>Use at least 3 different Google Fonts</li>
+                        <li>Implement a cohesive color scheme</li>
+                        <li>Apply various font weights and sizes</li>
+                        <li>Use different text alignments appropriately</li>
+                        <li>Include text decorations where suitable</li>
+                    </ul>
+                    <h4>Bonus Points:</h4>
+                    <ul style="margin: 15px 0; padding-left: 20px;">
+                        <li>Create a typography hierarchy</li>
+                        <li>Use CSS gradients for backgrounds</li>
+                        <li>Add hover effects on text elements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="homework" class="section">
+        <div class="container">
+            <h2>Home Task</h2>
+            <div class="color-card" style="background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); max-width: 800px; margin: 0 auto;">
+                <h3>📰 News Article Page Styling</h3>
+                <p style="font-size: 18px; margin-bottom: 25px;">Style a complete news article page with proper typography and color hierarchy</p>
+                
+                <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 10px; text-align: left;">
+                    <h4>Your Task:</h4>
+                    <ol style="margin: 15px 0; padding-left: 20px; line-height: 1.8;">
+                        <li><strong>Headline:</strong> Large, bold font with attractive color</li>
+                        <li><strong>Byline:</strong> Author name and date with different styling</li>
+                        <li><strong>Article Body:</strong> Readable font, proper line spacing</li>
+                        <li><strong>Subheadings:</strong> Clear hierarchy with different sizes</li>
+                        <li><strong>Links:</strong> Styled with hover effects</li>
+                        <li><strong>Quotes:</strong> Distinctive styling to stand out</li>
+                    </ol>
+                    
+                    <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px; margin-top: 20px;">
+                        <strong>💡 Pro Tips:</strong>
+                        <ul style="margin: 10px 0; padding-left: 20px;">
+                            <li>Use a maximum of 2-3 font families</li>
+                            <li>Maintain consistent color scheme</li>
+                            <li>Ensure good contrast for readability</li>
+                            <li>Test on different screen sizes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 25px; font-size: 16px; opacity: 0.9;">
+                    <strong>Due Date:</strong> Next class session<br>
+                    <strong>Submission:</strong> Share your HTML/CSS files
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Dot and Cross Technology | Instructor: Anas Yousaf</p>
+            <p>CSS Colors, Fonts & Text Styling - Week 2, Lecture 2</p>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive color demo
+        function changeColor(bgColor, textColor) {
+            const demo = document.getElementById('colorDemo');
+            demo.style.backgroundColor = bgColor;
+            demo.style.color = textColor || '#333';
+            demo.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                demo.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Interactive text demo
+        function changeTextAlign(alignment) {
+            const demo = document.getElementById('textDemo');
+            demo.style.textAlign = alignment;
+            demo.style.transform = 'translateX(5px)';
+            setTimeout(() => {
+                demo.style.transform = 'translateX(0)';
+            }, 200);
+        }
+
+        function toggleDecoration(decoration) {
+            const demo = document.getElementById('textDemo');
+            const currentDecoration = demo.style.textDecoration;
+            
+            if (currentDecoration === decoration) {
+                demo.style.textDecoration = 'none';
+            } else {
+                demo.style.textDecoration = decoration;
+            }
+            
+            demo.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+                demo.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Smooth scrolling enhancement
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation on page load
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
